@@ -1,0 +1,31 @@
+bank <- read.csv("E:/kamagyana/Computing/DARET/Assignments/bank.csv", sep=";", stringsAsFactors=FALSE)
+View(bank)
+sum(is.na(bank))
+str(bank)
+nrow(bank)
+ncol(bank)
+library(mice)
+md.pattern(bank)
+library(VIM)
+missdataplot <- aggr(bank, col=c('navyblue','red'), numbers=TRUE, sortVars=TRUE, labels=names(data), cex.axis=.7, gap=3, ylab=c("Histogram of missing data","Pattern"))
+ggplot(bank,aes(job)) + geom_bar() + scale_x_discrete(labels = abbreviate)
+library(ggplot2)
+ggplot(bank,aes(job)) + geom_bar() + scale_x_discrete(labels = abbreviate)
+JobMarry <- table(bank$job, bank$marital)
+addmargins(JobMarry)
+chisq.test(JobMarry)
+JobMarry2 <- JobMarry[-c(9,12),]
+JobMarry2
+chisq.test(JobMarry2)
+JobEdu <- table(bank$job, bank$education)
+addmargins(JobEdu)
+chisq.test(JobEdu)
+JobEdu2 <- JobEdu[-c(4,7,9,11,12),]
+JobEdu2
+chisq.test(JobEdu2)
+save.image("E:/kamagyana/Computing/DARET/R-code-submissions/Asst11.1.RData")
+savehistory("E:/kamagyana/Computing/DARET/R-code-submissions/Asst11.1")
+
+
+
+	
